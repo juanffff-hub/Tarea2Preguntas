@@ -48,16 +48,12 @@ public class GameController : MonoBehaviour
     public GameObject botonGenerarPreguntaFVDificil;
     public GameObject botonGenerarPreguntaAFacil;
     public GameObject botonGenerarPreguntaADificil;
+    public GameObject panelEmpezar;
 
     // Start is called before the first frame update
     void Start()
     {
-        lecturaPreguntas();
-        FiltrarPreguntasFaciles();
-        FiltrarPreguntasDificiles();
-        mostrarPreguntaAleatoriaFacil();
-
-
+        panelEmpezar.SetActive(true);
     }
 
     // Update is called once per frame
@@ -68,6 +64,8 @@ public class GameController : MonoBehaviour
 
     public void mostrarPreguntaAleatoriaFacil()
     {
+
+        panelEmpezar.SetActive(false);
         List<int> listaNumerosAleatorios = new List<int>();
 
         if (leerPreguntaMultiple.listaPreguntasMultiplesFaciles.Count > 0) listaNumerosAleatorios.Add(1);
@@ -359,34 +357,19 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    public void lecturaPreguntas()
+
+    public void filtrarPreguntas()
     {
-        leerPreguntaMultiple.LecturaPreguntasMultiples();
-        leerPreguntaFalsoVerdadero.LecturaPreguntasFalsoVerdadero();
-        leerPreguntaAbierta.LecturaPreguntasAbiertas();
-    }
+        leerPreguntaMultiple.FiltrarPreguntasMultiples();
+        leerPreguntaAbierta.FiltrarPreguntasAbiertas();
+        leerPreguntaFalsoVerdadero.FiltrarPreguntasFV();
 
 
-
-
-    private void FiltrarPreguntasFaciles()
-    {
-        leerPreguntaMultiple.FiltrarPreguntasMultiplesFaciles();
-        leerPreguntaFalsoVerdadero.FiltrarPreguntasFVFaciles();
-        leerPreguntaAbierta.FiltrarPreguntasAbiertasFaciles();
-    }
-
-    private void FiltrarPreguntasDificiles()
-    {
-        leerPreguntaMultiple.FiltrarPreguntasMultiplesDificiles();
-        leerPreguntaFalsoVerdadero.FiltrarPreguntasFVDificiles();
-        leerPreguntaAbierta.FiltrarPreguntasAbiertasDificiles();
     }
 
     public void reiniciarJuego()
     {
-        FiltrarPreguntasFaciles();
-        FiltrarPreguntasDificiles();
+        filtrarPreguntas();
         mostrarPreguntaAleatoriaFacil();
         botonGenerarPreguntaPMDificil.SetActive(false);
         botonGenerarPreguntaFVDificil.SetActive(false);
