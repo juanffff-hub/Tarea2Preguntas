@@ -9,15 +9,22 @@ using Unity.VisualScripting;
 
 public class GameController : MonoBehaviour
 {
-    public LeerPM leerPreguntaMultiple;
+<<<<<<< Updated upstream
     string lineaLeida = "";
-
+    List<PreguntaMultiple> listaPreguntasMultiples;
+    List<PreguntaMultiple> listaPreguntasMultiplesFaciles;
+    List<PreguntaMultiple> listaPreguntasMultiplesDificiles;
     List<PreguntaFalsoVerdadero> listaPreguntasFV;
     List<PreguntaFalsoVerdadero> listaPreguntasFVFaciles;
     List<PreguntaFalsoVerdadero> listaPreguntasFVDificiles;
     List<PreguntaAbierta> listaPreguntasAbiertas;
     List<PreguntaAbierta> listaPreguntasAbiertasFaciles;
     List<PreguntaAbierta> listaPreguntasAbiertasDificiles;
+=======
+    public LeerPM leerPreguntaMultiple;
+    public LeerPA leerPreguntaAbierta;
+    public LeerPFV leerPreguntaFalsoVerdadero;
+>>>>>>> Stashed changes
     string respuestaPM;
     string respuestaFV;
     string respuestaAbierta;
@@ -58,12 +65,18 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream
+        listaPreguntasMultiples = new List<PreguntaMultiple>();
+        listaPreguntasMultiplesFaciles = new List<PreguntaMultiple>();
+        listaPreguntasMultiplesDificiles = new List<PreguntaMultiple>();
         listaPreguntasFV = new List<PreguntaFalsoVerdadero>();
         listaPreguntasFVFaciles = new List<PreguntaFalsoVerdadero>();
         listaPreguntasFVDificiles = new List<PreguntaFalsoVerdadero>();
         listaPreguntasAbiertas = new List<PreguntaAbierta>();
         listaPreguntasAbiertasFaciles = new List<PreguntaAbierta>();
         listaPreguntasAbiertasDificiles = new List<PreguntaAbierta>();
+=======
+>>>>>>> Stashed changes
         lecturaPreguntas();
         FiltrarPreguntasFaciles();
         FiltrarPreguntasDificiles();
@@ -82,9 +95,15 @@ public class GameController : MonoBehaviour
     {
         List<int> listaNumerosAleatorios = new List<int>();
 
-        if (leerPreguntaMultiple.listaPreguntasMultiplesFaciles.Count > 0) listaNumerosAleatorios.Add(1);
+<<<<<<< Updated upstream
+        if (listaPreguntasMultiplesFaciles.Count > 0) listaNumerosAleatorios.Add(1);
         if (listaPreguntasFVFaciles.Count > 0) listaNumerosAleatorios.Add(2);
         if (listaPreguntasAbiertasFaciles.Count > 0) listaNumerosAleatorios.Add(3);
+=======
+        if (leerPreguntaMultiple.listaPreguntasMultiplesFaciles.Count > 0) listaNumerosAleatorios.Add(1);
+        if (leerPreguntaFalsoVerdadero.listaPreguntasFVFaciles.Count > 0) listaNumerosAleatorios.Add(2);
+        if (leerPreguntaAbierta.listaPreguntasAbiertasFaciles.Count > 0) listaNumerosAleatorios.Add(3);
+>>>>>>> Stashed changes
 
         if (listaNumerosAleatorios.Count > 0)
         {
@@ -114,7 +133,7 @@ public class GameController : MonoBehaviour
             botonGenerarPreguntaFVFacil.SetActive(false);
             botonGenerarPreguntaAFacil.SetActive(false);
         }
-
+        
     }
 
     public void mostrarPreguntaAleatoriaDificil()
@@ -122,9 +141,15 @@ public class GameController : MonoBehaviour
 
         List<int> listaNumerosAleatorios = new List<int>();
 
-        if (leerPreguntaMultiple.listaPreguntasMultiplesDificiles.Count > 0) listaNumerosAleatorios.Add(1);
+<<<<<<< Updated upstream
+        if (listaPreguntasMultiplesDificiles.Count > 0) listaNumerosAleatorios.Add(1);
         if (listaPreguntasFVDificiles.Count > 0) listaNumerosAleatorios.Add(2);
         if (listaPreguntasAbiertasDificiles.Count > 0) listaNumerosAleatorios.Add(3);
+=======
+        if (leerPreguntaMultiple.listaPreguntasMultiplesDificiles.Count > 0) listaNumerosAleatorios.Add(1);
+        if (leerPreguntaFalsoVerdadero.listaPreguntasFVDificiles.Count > 0) listaNumerosAleatorios.Add(2);
+        if (leerPreguntaAbierta.listaPreguntasAbiertasDificiles.Count > 0) listaNumerosAleatorios.Add(3);
+>>>>>>> Stashed changes
 
         if (listaNumerosAleatorios.Count > 0)
         {
@@ -158,8 +183,8 @@ public class GameController : MonoBehaviour
         panelPreguntasPM.SetActive(true);
         panelPreguntasFV.SetActive(false);
         panelPreguntasAbiertas.SetActive(false);
-        int randomIndex = UnityEngine.Random.Range(0, leerPreguntaMultiple.listaPreguntasMultiplesFaciles.Count);
-        preguntaActualMultiple = leerPreguntaMultiple.listaPreguntasMultiplesFaciles[randomIndex];
+        int randomIndex = UnityEngine.Random.Range(0, listaPreguntasMultiplesFaciles.Count);
+        preguntaActualMultiple = listaPreguntasMultiplesFaciles[randomIndex];
 
         textPreguntaMultiple.text = preguntaActualMultiple.Pregunta;
         textResp1.text = preguntaActualMultiple.Respuesta1;
@@ -168,16 +193,16 @@ public class GameController : MonoBehaviour
         textResp4.text = preguntaActualMultiple.Respuesta4;
         respuestaPM = preguntaActualMultiple.RespuestaCorrecta;
 
-        leerPreguntaMultiple.listaPreguntasMultiplesFaciles.RemoveAt(randomIndex);
-    }
+        listaPreguntasMultiplesFaciles.RemoveAt(randomIndex);
+        }
 
     public void mostrarPreguntasMultiplesDificiles()
     {
         panelPreguntasPM.SetActive(true);
         panelPreguntasFV.SetActive(false);
         panelPreguntasAbiertas.SetActive(false);
-        int randomIndex = UnityEngine.Random.Range(0, leerPreguntaMultiple.listaPreguntasMultiplesDificiles.Count);
-        preguntaActualMultiple = leerPreguntaMultiple.listaPreguntasMultiplesDificiles[randomIndex];
+        int randomIndex = UnityEngine.Random.Range(0, listaPreguntasMultiplesDificiles.Count);
+        preguntaActualMultiple = listaPreguntasMultiplesDificiles[randomIndex];
 
         textPreguntaMultiple.text = preguntaActualMultiple.Pregunta;
         textResp1.text = preguntaActualMultiple.Respuesta1;
@@ -186,7 +211,7 @@ public class GameController : MonoBehaviour
         textResp4.text = preguntaActualMultiple.Respuesta4;
         respuestaPM = preguntaActualMultiple.RespuestaCorrecta;
 
-        leerPreguntaMultiple.listaPreguntasMultiplesDificiles.RemoveAt(randomIndex);
+        listaPreguntasMultiplesDificiles.RemoveAt(randomIndex);
     }
 
     public void mostrarPreguntasFVFaciles()
@@ -195,12 +220,12 @@ public class GameController : MonoBehaviour
         panelPreguntasFV.SetActive(true);
         panelPreguntasAbiertas.SetActive(false);
 
-        int randomIndex = UnityEngine.Random.Range(0, listaPreguntasFVFaciles.Count);
-        preguntaActualFV = listaPreguntasFVFaciles[randomIndex];
+        int randomIndex = UnityEngine.Random.Range(0, leerPreguntaFalsoVerdadero.listaPreguntasFVFaciles.Count);
+        preguntaActualFV = leerPreguntaFalsoVerdadero.listaPreguntasFVFaciles[randomIndex];
 
         textPreguntaFV.text = preguntaActualFV.Pregunta;
         respuestaFV = preguntaActualFV.Respuesta;
-        listaPreguntasFVFaciles.RemoveAt(randomIndex);
+        leerPreguntaFalsoVerdadero.listaPreguntasFVFaciles.RemoveAt(randomIndex);
     }
     public void mostrarPreguntasFVDificiles()
     {
@@ -208,12 +233,12 @@ public class GameController : MonoBehaviour
         panelPreguntasFV.SetActive(true);
         panelPreguntasAbiertas.SetActive(false);
 
-        int randomIndex = UnityEngine.Random.Range(0, listaPreguntasFVDificiles.Count);
-        preguntaActualFV = listaPreguntasFVDificiles[randomIndex];
+        int randomIndex = UnityEngine.Random.Range(0, leerPreguntaFalsoVerdadero.listaPreguntasFVDificiles.Count);
+        preguntaActualFV = leerPreguntaFalsoVerdadero.listaPreguntasFVDificiles[randomIndex];
 
         textPreguntaFV.text = preguntaActualFV.Pregunta;
         respuestaFV = preguntaActualFV.Respuesta;
-        listaPreguntasFVDificiles.RemoveAt(randomIndex);
+        leerPreguntaFalsoVerdadero.listaPreguntasFVDificiles.RemoveAt(randomIndex);
     }
     public void mostrarPreguntasAbiertasFaciles()
     {
@@ -292,7 +317,7 @@ public class GameController : MonoBehaviour
 
     public void comprobarRespuestaVerdadero()
     {
-        if (respuestaFV.ToLower().Equals("true"))
+        if(respuestaFV.ToLower().Equals("true"))
         {
 
             mostrarPanelCorrectoFV();
@@ -373,41 +398,61 @@ public class GameController : MonoBehaviour
 
     public void lecturaPreguntas()
     {
-        leerPreguntaMultiple.LecturaPreguntasMultiples();
+<<<<<<< Updated upstream
+        LecturaPreguntasMultiples();
         LecturaPreguntasFalsoVerdadero();
         LecturaPreguntasAbiertas();
     }
     #region Lectura archivos
-
-
-    public void LecturaPreguntasFalsoVerdadero()
+    public void LecturaPreguntasMultiples()
     {
         try
         {
-            StreamReader sr1 = new StreamReader("Assets/Files/preguntasFalso_Verdadero.txt");
+            StreamReader sr1 = new StreamReader("Assets/Files/ArchivoPreguntasM.txt");
             while ((lineaLeida = sr1.ReadLine()) != null)
             {
                 string[] lineaPartida = lineaLeida.Split("-");
                 string pregunta = lineaPartida[0];
-                string respuesta = lineaPartida[1];
-                string versiculo = lineaPartida[2];
-                string difucltad = lineaPartida[3];
+                string respuesta1 = lineaPartida[1];
+                string respuesta2 = lineaPartida[2];
+                string respuesta3 = lineaPartida[3];
+                string respuesta4 = lineaPartida[4];
+                string respuestaCorrecta= lineaPartida[5];
+                string versiculo = lineaPartida[6];
+                string difucltad = lineaPartida[7];
+=======
+        leerPreguntaMultiple.LecturaPreguntasMultiples();
+        leerPreguntaFalsoVerdadero.LecturaPreguntasFalsoVerdadero();
+        leerPreguntaAbierta.LecturaPreguntasAbiertas();
+    }
+>>>>>>> Stashed changes
 
-                PreguntaFalsoVerdadero objPFV = new PreguntaFalsoVerdadero(pregunta, respuesta, versiculo, difucltad);
+                PreguntaMultiple objPM=new PreguntaMultiple(pregunta, respuesta1, respuesta2, respuesta3,
+                    respuesta4, respuestaCorrecta, versiculo, difucltad);
 
-                listaPreguntasFV.Add(objPFV);
+                listaPreguntasMultiples.Add(objPM);
 
             }
-            Debug.Log("El tamaño de la lista es " + listaPreguntasFV.Count);
+            Debug.Log("El tamaño de la lista es " + listaPreguntasMultiples.Count);
         }
-        catch (Exception e)
-        {
-            Debug.Log("ERROR!!!!! " + e.ToString());
+        catch(Exception e) 
+        { 
+            Debug.Log("ERROR!!!!! "+e.ToString());
         }
         finally
         { Debug.Log("Executing finally block."); }
     }
 
+
+
+    private void FiltrarPreguntasFaciles()
+    {
+        leerPreguntaMultiple.FiltrarPreguntasMultiplesFaciles();
+        leerPreguntaFalsoVerdadero.FiltrarPreguntasFVFaciles();
+        leerPreguntaAbierta.FiltrarPreguntasAbiertasFaciles();
+    }
+
+<<<<<<< Updated upstream
     public void LecturaPreguntasAbiertas()
     {
         try
@@ -426,7 +471,7 @@ public class GameController : MonoBehaviour
                 listaPreguntasAbiertas.Add(objPA);
 
             }
-            Debug.Log("El tamaño de la lista es " + listaPreguntasAbiertas.Count);
+            Debug.Log("El tamaño de la lista es " + listaPreguntasFV.Count);
         }
         catch (Exception e)
         {
@@ -438,13 +483,29 @@ public class GameController : MonoBehaviour
     #endregion
 
     #region filtraciones
-
-    private void FiltrarPreguntasFVFaciles()
+    private void FiltrarPreguntasMultiplesFaciles()
     {
-        listaPreguntasFVFaciles = listaPreguntasFV.FindAll(p => p.Dificultad.ToLower() == "facil");
-        Debug.Log("Total preguntas faciles: " + listaPreguntasFVFaciles.Count);
+        listaPreguntasMultiplesFaciles = listaPreguntasMultiples.FindAll(p => p.Dificultad.ToLower() == "facil");
+        Debug.Log("Total preguntas fáciles: " + listaPreguntasMultiplesFaciles.Count);
     }
 
+    private void FiltrarPreguntasMultiplesDificiles()
+    {
+        listaPreguntasMultiplesDificiles = listaPreguntasMultiples.FindAll(p => p.Dificultad.ToLower() == "dificil");
+        Debug.Log("Total preguntas dificiles: " + listaPreguntasMultiplesDificiles.Count);
+    }
+
+    private void FiltrarPreguntasFVFaciles()
+=======
+    private void FiltrarPreguntasDificiles()
+>>>>>>> Stashed changes
+    {
+        leerPreguntaMultiple.FiltrarPreguntasMultiplesDificiles();
+        leerPreguntaFalsoVerdadero.FiltrarPreguntasFVDificiles();
+        leerPreguntaAbierta.FiltrarPreguntasAbiertasDificiles();
+    }
+
+<<<<<<< Updated upstream
     private void FiltrarPreguntasFVDificiles()
     {
         listaPreguntasFVDificiles = listaPreguntasFV.FindAll(p => p.Dificultad.ToLower() == "dificil");
@@ -465,18 +526,20 @@ public class GameController : MonoBehaviour
 
     private void FiltrarPreguntasFaciles()
     {
-        leerPreguntaMultiple.FiltrarPreguntasMultiplesFaciles();
+        FiltrarPreguntasMultiplesFaciles();
         FiltrarPreguntasFVFaciles();
         FiltrarPreguntasAbiertasFaciles();
     }
 
     private void FiltrarPreguntasDificiles()
     {
-        leerPreguntaMultiple.FiltrarPreguntasMultiplesDificiles();
+        FiltrarPreguntasMultiplesDificiles();
         FiltrarPreguntasFVDificiles();
         FiltrarPreguntasAbiertasDificiles();
     }
 
+=======
+>>>>>>> Stashed changes
     public void reiniciarJuego()
     {
         FiltrarPreguntasFaciles();
@@ -497,8 +560,11 @@ public class GameController : MonoBehaviour
         textErrores.text = cantidadErrores.ToString();
     }
 }
+<<<<<<< Updated upstream
 
-
+    
 
 
 #endregion
+=======
+>>>>>>> Stashed changes
