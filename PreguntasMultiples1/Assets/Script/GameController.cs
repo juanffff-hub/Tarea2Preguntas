@@ -49,6 +49,9 @@ public class GameController : MonoBehaviour
     public GameObject botonGenerarPreguntaAFacil;
     public GameObject botonGenerarPreguntaADificil;
     public GameObject panelEmpezar;
+    public Timer timerManager;
+    public AudioSource audioWin;
+    public AudioSource audioLose;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +95,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            timerManager.TimerStop();
             panelRondaDificil.SetActive(true);
             botonGenerarPreguntaPMDificil.SetActive(true);
             botonGenerarPreguntaFVDificil.SetActive(true);
@@ -132,6 +136,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            timerManager.TimerStop();
             mostrarResultados();
             panelNoQuedanPreguntas.SetActive(true);
         }
@@ -268,11 +273,13 @@ public class GameController : MonoBehaviour
         {
             mostrarPanelCorrectoFV();
             cantidadAciertos += 1;
+            audioWin.Play();
         }
         else
         {
             mostrarPanelIncorrectoFV();
             cantidadErrores += 1;
+            audioLose.Play();
         }
     }
 
@@ -283,11 +290,13 @@ public class GameController : MonoBehaviour
 
             mostrarPanelCorrectoFV();
             cantidadAciertos += 1;
+            audioWin.Play();
         }
         else
         {
             mostrarPanelIncorrectoFV();
             cantidadErrores += 1;
+            audioLose.Play();
         }
     }
     #endregion
@@ -301,12 +310,14 @@ public class GameController : MonoBehaviour
             Debug.Log("Respuesta Correcta es la 1");
             mostrarPanelCorrectoPM();
             cantidadAciertos += 1;
+            audioWin.Play();
         }
         else
         {
             Debug.Log("Respuesta Incorrecta es la 1");
             mostrarPanelIncorrectoPM();
             cantidadErrores += 1;
+            audioLose.Play();
         }
     }
 
@@ -317,12 +328,14 @@ public class GameController : MonoBehaviour
             Debug.Log("Respuesta Correcta es la 2");
             mostrarPanelCorrectoPM();
             cantidadAciertos += 1;
+            audioWin.Play();
         }
         else
         {
             Debug.Log("Respuesta Incorrecta es la 2");
             mostrarPanelIncorrectoPM();
             cantidadErrores += 1;
+            audioLose.Play();
         }
     }
     public void comprobarRespuesta3()
@@ -332,12 +345,14 @@ public class GameController : MonoBehaviour
             Debug.Log("Respuesta Correcta es la 3");
             mostrarPanelCorrectoPM();
             cantidadAciertos += 1;
+            audioWin.Play();
         }
         else
         {
             Debug.Log("Respuesta Incorrecta es la 3");
             mostrarPanelIncorrectoPM();
             cantidadErrores += 1;
+            audioLose.Play();
         }
     }
     public void comprobarRespuesta4()
@@ -347,12 +362,14 @@ public class GameController : MonoBehaviour
             Debug.Log("Respuesta Correcta es la 4");
             mostrarPanelCorrectoPM();
             cantidadAciertos += 1;
+            audioWin.Play();
         }
         else
         {
             Debug.Log("Respuesta Incorrecta es la 4");
             mostrarPanelIncorrectoPM();
             cantidadErrores += 1;
+            audioLose.Play();
         }
     }
     #endregion
@@ -369,6 +386,8 @@ public class GameController : MonoBehaviour
 
     public void reiniciarJuego()
     {
+        timerManager.TimerReset();
+        timerManager.TimerStart();
         filtrarPreguntas();
         mostrarPreguntaAleatoriaFacil();
         botonGenerarPreguntaPMDificil.SetActive(false);
